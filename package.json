@@ -1,0 +1,43 @@
+{
+  "name": "cognitive-tools",
+  "version": "0.3.0",
+  "description": "Wrapper on top of Azure Cognitive Services",
+  "main": "build/index.js",
+  "types": "build/**/*.d.ts",
+  "scripts": {
+    "test": "jest",
+    "clean": "rimraf build/*",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "preversion": "npm run lint",
+    "postversion": "git push && git push --tags",
+    "version": "npm run format && git add -A src",
+    "prebuild": "npm run clean",
+    "build": "tsc -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" ",
+    "lint": "tslint -p tsconfig.base.json -c tslint.json --exclude \"node_modules/**\" \"**/*.ts\" "
+  },
+  "keywords": ["azure","cognitive","cognitive-services","ai","ml","machine learn","text analytics","language", "detect"],
+  "author": "diberry",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diberry/cognitive-tools.git"
+  },  
+  "dependencies": {
+    "azure-cognitiveservices-textanalytics": "^3.0.0",
+    "ms-rest-azure": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.16",
+    "@types/node": "^12.6.9",
+    "dotenv": "^8.0.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3"
+  }
+}
