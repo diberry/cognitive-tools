@@ -10,6 +10,7 @@ module.exports = {
   testEnvironment: "node",
   setupFiles: ["./tests/setup.ts"],
   notify: true,
+  verbose: true,
   globals: {
     "ts-jest": {
       tsConfig: "tsconfig.test.json",

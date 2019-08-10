@@ -1,6 +1,6 @@
 {
   "name": "cognitive-tools",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Wrapper on top of Azure Cognitive Services",
   "main": "build/index.js",
   "types": "build/**/*.d.ts",
@@ -17,20 +17,37 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\" ",
     "lint": "tslint -p tsconfig.base.json -c tslint.json --exclude \"node_modules/**\" \"**/*.ts\" "
   },
-  "keywords": ["azure","cognitive","cognitive-services","ai","ml","machine learn","text analytics","language", "detect"],
+  "keywords": [
+    "azure",
+    "cognitive",
+    "cognitive-services",
+    "ai",
+    "ml",
+    "machine learn",
+    "text analytics",
+    "language",
+    "detect"
+  ],
   "author": "diberry",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/diberry/cognitive-tools.git"
-  },  
+  },
   "dependencies": {
     "azure-cognitiveservices-textanalytics": "^3.0.0",
-    "ms-rest-azure": "^3.0.0"
+    "ms-rest-azure": "^3.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "requestretry": "^4.0.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.16",
     "@types/node": "^12.6.9",
+    "@types/request": "^2.48.2",
+    "@types/request-promise": "^4.1.44",
+    "@types/uuid": "^3.4.5",
     "dotenv": "^8.0.0",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
