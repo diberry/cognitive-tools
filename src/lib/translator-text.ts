@@ -2,14 +2,21 @@ import request = require('request-promise');
 import uuidv4 = require('uuid/v4');
 
 export class TranslatorText {
+  // settings to create translator object {key, endpoint}
   private config: any;
 
+  // all required settings were sent
+  private configWorks: boolean = false;
+
   /**
-   *
+   * Example endpoint: https://api.cognitive.microsofttranslator.com
    * @param config - {key:"",endpoint:""}
    */
   constructor(config) {
-    this.config = config;
+    if (config && config.key && config.endpoint) {
+      this.config = config;
+      this.configWorks = true;
+    }
   }
   /**
    * config.endpoint needs to end in forward slash
@@ -18,6 +25,14 @@ export class TranslatorText {
    */
   public async translate(text: string, languages: string[]): Promise<any> {
     try {
+      if (!this.configWorks) {
+        throw Error("initialization failed, dependencies don't work");
+      }
+
+      if (!text || !languages || !(languages.length > 0)) {
+        throw Error('initialization failed, one or more params are empty');
+      }
+
       const options = {
         baseUrl: this.config.endpoint,
         body: [

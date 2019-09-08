@@ -8,7 +8,7 @@ describe('tts', () => {
     it('should return textToSpeech', async (done) => {
 
         try {
-            jest.setTimeout(25000);
+            jest.setTimeout(90000);
 
 
             const ttsConfig = {
@@ -20,20 +20,22 @@ describe('tts', () => {
             const textToSpeech = new TextToSpeech(ttsConfig);
 
             const transformConfig = {
-                filenameandpath: 'test.mp3'
+                audioFileNameAndPath: (+new Date).toString() + '-' + 'test.mp3'
             }
 
+            // final file location
+            let writableStream = fs.createWriteStream(transformConfig.audioFileNameAndPath);
             
-            let writableStream = fs.createWriteStream(transformConfig.filenameandpath);
+            // text to speech
             await textToSpeech.transform(transformConfig, "This is a brand new world.", writableStream);
 
             //stream handling
-            writableStream.end();
+            //writableStream.end();
 
-            await fsPromises.access(transformConfig.filenameandpath, fs.constants.W_OK);
+            await fsPromises.access(transformConfig.audioFileNameAndPath, fs.constants.W_OK);
 
             // cleanup
-            await fsPromises.unlink(transformConfig.filenameandpath);
+            await fsPromises.unlink(transformConfig.audioFileNameAndPath);
 
             done();
     

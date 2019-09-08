@@ -19,8 +19,6 @@ describe('TranslatorText', () => {
 
             const response = await translatorText.translate(text,languages);
 
-            console.log(JSON.stringify(response));
-
             expect(response[0].detectedLanguage.language).toEqual("en");
             expect(response[0].translations.length).toEqual(2);  
             expect(response[0].translations[0].text).toEqual("Hallo Welt!" || "Salve, mondo!");            
